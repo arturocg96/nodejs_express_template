@@ -1,4 +1,4 @@
-//app.js is the express app that will be used to serve the API. It will use the apiRoutes to handle the API requests.
+//app.js is the express app that will be used to serve the API. 
 
 const express = require('express'); // Import express
 
