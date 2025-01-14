@@ -7,6 +7,7 @@ const server = http.createServer(app); // Create a server with the app
 
 require('dotenv').config(); // Import dotenv and configure it to read .env file & assign it to process.env
 
+
 const PORT = process.env.PORT || 3000; // Define the port
 server.listen(PORT); // Make the server listen to the port
 
