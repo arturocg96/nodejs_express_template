@@ -1,28 +1,23 @@
-// const mysql = require('mysql2/promise');
+// Importación del módulo 'mysql2/promise' para trabajar con MySQL utilizando promesas.
+const mysql = require('mysql2/promise');
 
-// // Configuración de la conexión a la base de datos.
-// // Se utilizan variables de entorno para garantizar la seguridad y flexibilidad de la configuración.
-// const dbConfig = {
-//     host: process.env.DB_HOST,         // Dirección del host de la base de datos.
-//     user: process.env.DB_USER,         // Nombre de usuario para la conexión.
-//     password: process.env.DB_PASSWORD, // Contraseña del usuario.
-//     database: process.env.DB_NAME,     // Nombre de la base de datos a utilizar.
-//     port: process.env.DB_PORT,         // Puerto en el que escucha el servidor de base de datos.
-// };
+// Configuración de la conexión a la base de datos.
+// Se utilizan variables de entorno para almacenar las credenciales y detalles de la base de datos.
+// Esto mejora la seguridad, ya que evita incluir información sensible directamente en el código fuente
+// y facilita la flexibilidad en diferentes entornos (desarrollo, pruebas, producción).
+const dbConfig = {
+    host: process.env.DB_HOST,         // Dirección del servidor de la base de datos (por ejemplo, 'localhost' o una IP remota).
+    user: process.env.DB_USER,         // Nombre del usuario autorizado a acceder a la base de datos.
+    password: process.env.DB_PASSWORD, // Contraseña asociada al usuario de la base de datos.
+    database: process.env.DB_NAME,     // Nombre de la base de datos a la que se debe conectar.
+    port: process.env.DB_PORT,         // Puerto en el que escucha el servidor de la base de datos (por defecto suele ser 3306 para MySQL).
+};
 
-// /**
-//  * Conecta a la base de datos utilizando las configuraciones definidas en `dbConfig`.
-//  *
-//  * @returns {Promise<mysql.Connection>} - La conexión activa a la base de datos.
-//  * @throws {Error} - Lanza un error si la conexión no se puede establecer.
-//  */
-// const connection = async () => {
-//     try {
-//       const conn = await mysql.createConnection(dbConfig);
-//       return conn;
-//     } catch (error) {
-//       throw new Error(error.message);
-//     }
-//   }
+// Creación de un grupo de conexiones (connection pool) para la base de datos.
+// El connection pool permite reutilizar conexiones existentes, mejorando el rendimiento
+// y reduciendo la sobrecarga de establecer nuevas conexiones constantemente.
+const pool = mysql.createPool(dbConfig);
 
-//   module.exports = connection;
+// Exportación del connection pool como una promesa para que pueda ser utilizado en otras partes de la aplicación.
+// Esto permite interactuar con la base de datos mediante operaciones asincrónicas.
+module.exports = pool.promise();
