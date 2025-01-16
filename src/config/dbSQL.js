@@ -12,19 +12,17 @@
 
 // /**
 //  * Conecta a la base de datos utilizando las configuraciones definidas en `dbConfig`.
-//  * 
+//  *
 //  * @returns {Promise<mysql.Connection>} - La conexión activa a la base de datos.
 //  * @throws {Error} - Lanza un error si la conexión no se puede establecer.
 //  */
-// module.exports.connect = async () => {
+// const connection = async () => {
 //     try {
-//         // Establece la conexión con la base de datos.
-//         const connection = await mysql.createConnection(dbConfig);
-       
-//         return connection; // Devuelve la conexión establecida.
+//       const conn = await mysql.createConnection(dbConfig);
+//       return conn;
 //     } catch (error) {
-//         // Maneja y registra cualquier error ocurrido durante el intento de conexión.
-//         console.error('Error al conectar a la base de datos:', error.message);
-//         throw error; // Lanza el error para que el consumidor de este módulo pueda manejarlo.
+//       throw new Error(error.message);
 //     }
-// };
+//   }
+
+//   module.exports = connection;
