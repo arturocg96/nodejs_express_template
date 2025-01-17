@@ -1,5 +1,6 @@
 // // Importación del módulo 'mysql2/promise' para trabajar con MySQL utilizando promesas.
 // const mysql = require('mysql2/promise');
+// require("dotenv").config();
 
 // // Configuración de la conexión a la base de datos.
 // // Se utilizan variables de entorno para almacenar las credenciales y detalles de la base de datos.
