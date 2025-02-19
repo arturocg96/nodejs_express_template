@@ -1,5 +1,6 @@
 //app.js is the express app that will be used to serve the API. 
 
+require('dotenv').config();
 const express = require('express'); // Import express
 const cors = require('cors'); // Import cors
 const apiRoutes = require('./routes/apiRoutes'); // Importa las rutas de la API
